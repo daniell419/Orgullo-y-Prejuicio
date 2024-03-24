@@ -1,18 +1,26 @@
 ##### analisis de sentimientos 
 
-install.packages("syuzhet")
-install.packages("RColorBrewer")
-install.packages("wordcloud")
-install.packages("tm")
+
+## instalación de paquetes 
+install.packages("syuzhet") # emociones
+install.packages("RColorBrewer") # paleta de colores
+install.packages("wordcloud") # Nube de palabras
+install.packages("tm") # text mining
 
 library(syuzhet)
 library(RColorBrewer)
 library(wordcloud)
 library(tm)
 
-# cambiar el path a la librería antes de empezar
-texto_OYP <- read.table("D:/OYP/Orgullo-y-Prejuicio/OYP.txt", fileEncoding = "UTF-8", sep = "\n", allowEscapes = T)
+# fijar el path 
+setwd("C:/Users/danie/OneDrive/Documents/GitHub/Orgullo-y-Prejuicio")
+
+# Leer el archivo de texto de Orgullo y Prejuicio
+texto_OYP <- read.table("OYP.txt", fileEncoding = "UTF-8", sep = "\n", allowEscapes = T)
+# tokenizar las palabras
+
 texto_palabrasOYP <- get_tokens(texto_OYP)
+# extraer los sentimientos asociados a cada token
 sentimientosOYP_df <- get_nrc_sentiment(texto_palabrasOYP, lang="spanish")
 
 colnames(sentimientosOYP_df) <- c('Rabia', 'Anticipaci?n', 'disgusto', 'miedo', "Alegr?a","Tristeza","sorpresa", "confianza", "negative", "positive")
